@@ -1,4 +1,4 @@
-module github.com/MatteoPossamai/prova
+module lsp.com/server
 
 go 1.20
 
