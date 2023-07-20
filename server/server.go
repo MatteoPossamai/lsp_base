@@ -50,6 +50,7 @@ func (s *LSPServer) Run(ctx context.Context) {
 			log.Println("New connection: " + remote)
 			// Create a new jsonrpc2 stream server
 			handler := jsonrpc2.HandlerWithError(s.Handle)
+
 			<-jsonrpc2.NewConn(
 				ctx,
 				jsonrpc2.NewBufferedStream(c, jsonrpc2.VSCodeObjectCodec{}),
@@ -184,22 +185,4 @@ func (s *LSPServer) Handle(ctx context.Context, conn *jsonrpc2.Conn, req *jsonrp
 
 	result = jsonrpc2.Response{ID: req.ID, Result: &res, Error: nil, Meta: nil}
 	return result, nil
-	/*
-		log.Println("Handling request...")
-		log.Println(req.Method)
-		// Handle something
-		message := json.RawMessage(`{"value":"hello"}`)
-		// unmarshall the raw message and print the result
-		var m map[string]interface{}
-		err = json.Unmarshal(message, &m)
-		if err != nil {
-			log.Println(err)
-			return nil, err
-		}
-
-		// print the result
-		log.Println(m["value"])
-
-		res := jsonrpc2.Response{ID: req.ID, Result: &message, Error: nil, Meta: nil}
-		return res, nil */
 }

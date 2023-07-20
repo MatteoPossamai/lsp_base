@@ -20,10 +20,10 @@ func decodeResponseMessage(message *json.RawMessage, m map[string]interface{}) {
 	}
 
 	for key, value := range m {
-		fmt.Println(key + " : ")
+		fmt.Print(key + " : ")
 		fmt.Println(value)
-		fmt.Println("==")
 	}
+	fmt.Println("===================================")
 }
 
 func main() {
